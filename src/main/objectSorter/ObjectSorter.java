@@ -4,6 +4,7 @@ import java.io.*;
 
 public class ObjectSorter <T> {
 	
+	//Used to get generic type at runtime
 	private T exampleType;
 	
 	public ObjectSorter(T ex) {
