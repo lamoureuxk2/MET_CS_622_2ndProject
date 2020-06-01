@@ -1,6 +1,7 @@
 package main.objectSorter;
 
 import main.exampleSerializableClasses.TestClass1;
+import java.io.*;
 
 public class ObjectSorterRunner {
 	
@@ -10,7 +11,13 @@ public class ObjectSorterRunner {
 	public static ObjectSorter<TestClass1> os = new ObjectSorter<>(new TestClass1());
 
 	public static void main(String[] args) {
+		String className = os.getClassName();
+		File directory = new File(className + "_folder");
 		
+		//Makes folder for objects if it doesnt exist
+		if(!directory.exists()) {
+			directory.mkdir();
+		}
 
 	}
 

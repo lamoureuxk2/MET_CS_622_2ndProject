@@ -11,6 +11,10 @@ public class ObjectSorter <T> {
 		exampleType = ex;
 	}
 	
+	public String getClassName() {
+		return exampleType.getClass().getName();
+	}
+	
 	/**
 	 * Reads object file, returns Object if instanceof T, null otherwise
 	 * @param file
