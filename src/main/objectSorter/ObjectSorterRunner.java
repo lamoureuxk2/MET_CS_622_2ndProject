@@ -12,13 +12,23 @@ public class ObjectSorterRunner {
 
 	public static void main(String[] args) {
 		String className = os.getClassName();
-		File directory = new File(className + "_folder");
+		File outputDirectory = new File(className + "_folder");
+		File inputDirectory = new File(EXAMPLE_OBJECT_DIRECTORY);
 		
-		//Makes folder for objects if it doesnt exist
-		if(!directory.exists()) {
-			directory.mkdir();
+		//Makes folder for objects if it does not exist
+		if(!outputDirectory.exists()) {
+			outputDirectory.mkdir();
+		}
+		
+		for(File file : inputDirectory.listFiles()) {
+			ObjectAndFilename<?> objAndName = os.getObjectAndFilename(file);
+			if(objAndName.isNotNull()) {
+				objAndName.writeObjToDirectory(outputDirectory);
+			}
 		}
 
 	}
+	
+	
 
 }

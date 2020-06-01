@@ -41,8 +41,9 @@ public class ObjectSorter <T> {
 			}
 			
 		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(1);
+			System.out.println("File: " + file.getName());
+			System.out.println(e);
+			return null;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -51,6 +52,8 @@ public class ObjectSorter <T> {
 		return null;
 	}
 	
-	
+	public ObjectAndFilename<T> getObjectAndFilename(File file) {
+		return new ObjectAndFilename<T>(this.readObjectFile(file), file.getName());
+	}
 
 }
