@@ -18,7 +18,7 @@ public class ObjectSorterRunner {
 		//Makes folder for objects if it does not exist
 		if(!outputDirectory.exists()) {
 			outputDirectory.mkdir();
-		}
+		} 
 		
 		for(File file : inputDirectory.listFiles()) {
 			ObjectAndFilename<?> objAndName = os.getObjectAndFilename(file);
