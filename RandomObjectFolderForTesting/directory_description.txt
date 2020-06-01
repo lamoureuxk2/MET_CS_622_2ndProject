@@ -1,0 +1,1 @@
+This folder is for objects of all types to test the sorter on.
