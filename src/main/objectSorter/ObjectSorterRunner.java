@@ -23,7 +23,7 @@ public class ObjectSorterRunner {
 		for(File file : inputDirectory.listFiles()) {
 			ObjectAndFilename<?> objAndName = os.getObjectAndFilename(file);
 			if(objAndName.isNotNull()) {
-				objAndName.writeObjToDirectory(outputDirectory);
+				os.writeObjToDirectory(objAndName, outputDirectory);
 			}
 		}
 

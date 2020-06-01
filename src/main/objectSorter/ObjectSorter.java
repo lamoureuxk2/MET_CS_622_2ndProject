@@ -52,6 +52,21 @@ public class ObjectSorter <T> {
 		return null;
 	}
 	
+	public void writeObjToDirectory(ObjectAndFilename<?> obj, File dir) {
+		String fileToWriteName = dir.getAbsolutePath() + "/" + obj.getFilename();
+		File fileToWrite = new File(fileToWriteName);
+		try {
+			FileOutputStream fs = new FileOutputStream(fileToWrite);
+			ObjectOutputStream os = new ObjectOutputStream(fs);
+			os.writeObject(obj.getObject());
+			fs.close();
+			os.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public ObjectAndFilename<T> getObjectAndFilename(File file) {
 		return new ObjectAndFilename<T>(this.readObjectFile(file), file.getName());
 	}
