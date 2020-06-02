@@ -2,7 +2,7 @@ package main.objectSorter;
 
 import java.io.*;
 
-public class ObjectSorter <T> {
+public class ObjectSorter <T extends Serializable> {
 	
 	//Used to get generic type at runtime
 	private T exampleType;
