@@ -1,12 +1,15 @@
 package main.objectSorter;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.stream.*;
 
 public class ObjectSorter <T extends Serializable> {
 	
 	//Used to get generic type at runtime
 	private T exampleType;
+	private ArrayList<ObjectAndFilename> list = new ArrayList<>();
 	private Stream<ObjectAndFilename> stream;
 	
 	public ObjectSorter(T ex) {
@@ -84,6 +87,24 @@ public class ObjectSorter <T extends Serializable> {
 		return new ObjectAndFilename<T>(this.readObjectFile(file), file.getName());
 	}
 	
-	
+	/**
+	 * Run this to sort all in a directory
+	 * @param directory
+	 */
+	public void sortAllInDirectory(File directoryIn) {
+		for(File file : directoryIn.listFiles()) {
+			ObjectAndFilename<?> objAndName = getObjectAndFilename(file);
+			if(objAndName.isNotNull()) {
+				list.add(objAndName);
+			}
+		}
+		Collections.sort(list);
+		stream = Stream.of(list.toArray(new ObjectAndFilename[list.size()]));
+		
+		
+		stream.forEach(objAndFile -> {
+			
+		});
+	}
 
 }
