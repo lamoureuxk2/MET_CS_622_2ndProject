@@ -1,11 +1,13 @@
 package main.objectSorter;
 
 import java.io.*;
+import java.util.stream.*;
 
 public class ObjectSorter <T extends Serializable> {
 	
 	//Used to get generic type at runtime
 	private T exampleType;
+	private Stream<ObjectAndFilename> stream;
 	
 	public ObjectSorter(T ex) {
 		exampleType = ex;
@@ -17,6 +19,7 @@ public class ObjectSorter <T extends Serializable> {
 	
 	/**
 	 * Reads object file, returns Object if instanceof T, null otherwise
+	 * Called by getObjectAndFilename method in this class
 	 * @param file
 	 * @return
 	 */
@@ -52,6 +55,11 @@ public class ObjectSorter <T extends Serializable> {
 		return null;
 	}
 	
+	/**
+	 * Adds ObjectAndFilename to directory
+	 * @param obj
+	 * @param dir
+	 */
 	public void writeObjToDirectory(ObjectAndFilename<?> obj, File dir) {
 		String fileToWriteName = dir.getAbsolutePath() + "/" + obj.getFilename();
 		File fileToWrite = new File(fileToWriteName);
@@ -67,8 +75,15 @@ public class ObjectSorter <T extends Serializable> {
 		}
 	}
 	
+	/**
+	 * Reads file and returns ObjectAndFilename object, which will have a null object if not instanceof example
+	 * @param file
+	 * @return
+	 */
 	public ObjectAndFilename<T> getObjectAndFilename(File file) {
 		return new ObjectAndFilename<T>(this.readObjectFile(file), file.getName());
 	}
+	
+	
 
 }

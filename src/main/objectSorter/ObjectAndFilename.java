@@ -2,13 +2,21 @@ package main.objectSorter;
 
 import java.io.*;
 
-public class ObjectAndFilename <T>  {
+public class ObjectAndFilename <T> implements Comparable {
 
 	private T object;
 	private String filename;
 	
 	ObjectAndFilename(T obj, String fn){
 		setObject(obj); setFilename(fn);
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		if(object instanceof Comparable) {
+			return ((Comparable)(this.object)).compareTo(o);
+		}
+		else return 0;
 	}
 	
 	public void writeObjToDirectory(File dir) {
