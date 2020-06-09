@@ -98,12 +98,19 @@ public class ObjectSorter <T extends Serializable> {
 				list.add(objAndName);
 			}
 		}
-		Collections.sort(list);
+		//Collections.sort(list);
 		stream = Stream.of(list.toArray(new ObjectAndFilename[list.size()]));
 		
+		String className = this.getClassName();
+		File outputDirectory = new File(className + "_folder");
+		
+		//Makes folder for objects if it does not exist
+		if(!outputDirectory.exists()) {
+			outputDirectory.mkdir();
+		}
 		
 		stream.forEach(objAndFile -> {
-			
+			this.writeObjToDirectory(objAndFile, outputDirectory);
 		});
 	}
 
