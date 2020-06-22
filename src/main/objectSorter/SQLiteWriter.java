@@ -18,7 +18,9 @@ public class SQLiteWriter {
 	
 	public static void main( String args[] ) {
 		File file = new File(DIRECTORY_TO_WRITE);
-		writeFolderIntoTable(file);
+//		writeFolderIntoTable(file);
+		readAllFromTable(file);
+		
 	}
 	
 	/**
@@ -95,6 +97,38 @@ public class SQLiteWriter {
 	         return null;
 	      }
 	      
+	}
+	
+	private static void readAllFromTable(File directory) {
+		Connection c = getDatabaseConnection();
+		Statement stmt = null;
+		String tableName = null;
+		
+		String name = directory.getName();
+		name = name.replaceAll("\\.", "_");
+		tableName = name;
+		
+		
+		try {
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery( "SELECT * FROM " + tableName + ";" );
+			
+			while(rs.next()) {
+				int id = rs.getInt("id");
+		        String  filename = rs.getString("filename");
+		        String toString  = rs.getString("objecttostring");
+		        
+		        System.out.println("id: " + id + " Filename: " + filename + " object info: " + toString);
+			}
+			
+			rs.close();
+		      stmt.close();
+		      c.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
 	}
 
 }
