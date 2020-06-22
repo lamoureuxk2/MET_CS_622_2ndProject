@@ -31,7 +31,7 @@ public class SQLiteWriter {
 	 * This may or not do the same with an unsorted directory but
 	 * the table will not be useful or organized, be cautious
 	 */
-	public void writeFolderIntoTable(File directory) {
+	public void writeFolderIntoTable(File directory) { 
 		
 	}
 

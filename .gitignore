@@ -1,3 +1,4 @@
 /bin/
 RandomObjectFolderForTesting/*
 *_folder
+*.db
