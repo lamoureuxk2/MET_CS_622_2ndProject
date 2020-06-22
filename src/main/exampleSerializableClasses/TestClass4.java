@@ -24,5 +24,10 @@ public class TestClass4 implements ExampleSerializable, Comparable<Object> {
 		else return 0;
 		
 	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(data1);
+	}
 
 }
